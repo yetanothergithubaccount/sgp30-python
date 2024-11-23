@@ -162,6 +162,17 @@ class SGP30:
         eco2, tvoc = self.command('measure_air_quality')
         return SGP30Reading(eco2, tvoc)
 
+    def get_air_quality_values(self):
+        """Get an air quality measurement.
+
+        Returns the measured equivalent_co2 and total_voc directly.
+
+        This should be called at 1s intervals to ensure the dynamic baseline compensation on the SGP30 operates correctly.
+
+        """
+        eco2, tvoc = self.command('measure_air_quality')
+        return eco2, tvoc
+    
     def get_baseline(self):
         """Get the current baseline setting.
 
